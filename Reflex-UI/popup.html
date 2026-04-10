@@ -1,0 +1,556 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FocusFlow</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&display=swap');
+
+    :root {
+      --bg: #0d1117;
+      --surface: #161b27;
+      --surface2: #1e2636;
+      --border: #2a3550;
+      --accent: #4f9cf9;
+      --accent2: #7b61ff;
+      --warn: #ff9800;
+      --danger: #f44336;
+      --success: #4caf50;
+      --text: #e2e8f8;
+      --muted: #7a8aab;
+      --radius: 12px;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      width: 360px;
+      min-height: 480px;
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'DM Sans', system-ui, sans-serif;
+      font-size: 14px;
+      padding: 0 0 12px 0;
+      overflow-x: hidden;
+    }
+
+    /* ── Header ─────────────────────────────────── */
+    .header {
+      background: linear-gradient(135deg, #1a2340 0%, #0d1117 100%);
+      padding: 18px 20px 14px;
+      border-bottom: 1px solid var(--border);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .header::before {
+      content: '';
+      position: absolute;
+      top: -30px;
+      right: -30px;
+      width: 120px;
+      height: 120px;
+      background: radial-gradient(circle, rgba(79, 156, 249, 0.18) 0%, transparent 70%);
+      border-radius: 50%;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 10px;
+    }
+
+    .logo-icon {
+      width: 34px;
+      height: 34px;
+      background: linear-gradient(135deg, var(--accent), var(--accent2));
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 18px;
+    }
+
+    .logo-title {
+      font-size: 18px;
+      font-weight: 700;
+      letter-spacing: -0.3px;
+      color: #fff;
+    }
+
+    .logo-sub {
+      font-size: 11px;
+      color: var(--muted);
+      font-weight: 400;
+      margin-top: 1px;
+    }
+
+    /* ── Frustration Meter ───────────────────────── */
+    .frustration-card {
+      margin: 12px 16px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 14px 16px;
+    }
+
+    .frust-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 10px;
+    }
+
+    .frust-label {
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .frust-score {
+      font-size: 22px;
+      font-weight: 700;
+      color: var(--text);
+      line-height: 1;
+    }
+
+    .frust-score span {
+      font-size: 13px;
+      color: var(--muted);
+      font-weight: 400;
+    }
+
+    .meter-track {
+      width: 100%;
+      height: 8px;
+      background: var(--surface2);
+      border-radius: 999px;
+      overflow: hidden;
+      margin-bottom: 8px;
+    }
+
+    .meter-fill {
+      height: 100%;
+      border-radius: 999px;
+      background: linear-gradient(90deg, var(--success), var(--accent));
+      transition: width 0.5s ease, background 0.5s ease;
+      width: 0%;
+    }
+
+    .meter-fill.warn {
+      background: linear-gradient(90deg, var(--warn), #ff6b00);
+    }
+
+    .meter-fill.danger {
+      background: linear-gradient(90deg, var(--warn), var(--danger));
+    }
+
+    .frust-status {
+      font-size: 11.5px;
+      color: var(--muted);
+    }
+
+    .frust-status.active {
+      color: var(--warn);
+    }
+
+    .frust-status.danger {
+      color: var(--danger);
+    }
+
+    .btn-reset {
+      margin-top: 10px;
+      padding: 5px 12px;
+      font-size: 11px;
+      font-family: inherit;
+      background: var(--surface2);
+      border: 1px solid var(--border);
+      color: var(--muted);
+      border-radius: 999px;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .btn-reset:hover {
+      color: var(--text);
+      border-color: var(--accent);
+    }
+
+    /* ── Section Label ───────────────────────────── */
+    .section-label {
+      font-size: 10.5px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.8px;
+      color: var(--muted);
+      padding: 10px 20px 4px;
+    }
+
+    /* ── Feature Toggles ─────────────────────────── */
+    .feature-list {
+      display: flex;
+      flex-direction: column;
+      gap: 3px;
+      padding: 0 12px;
+    }
+
+    .feature-row {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 10px 10px;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: background 0.15s;
+      border: 1px solid transparent;
+    }
+
+    .feature-row:hover {
+      background: var(--surface);
+      border-color: var(--border);
+    }
+
+    .feature-row.active {
+      background: rgba(79, 156, 249, 0.08);
+      border-color: rgba(79, 156, 249, 0.25);
+    }
+
+    .feature-icon {
+      width: 32px;
+      height: 32px;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 16px;
+      flex-shrink: 0;
+      background: var(--surface2);
+    }
+
+    .feature-row.active .feature-icon {
+      background: rgba(79, 156, 249, 0.15);
+    }
+
+    .feature-info {
+      flex: 1;
+      min-width: 0;
+    }
+
+    .feature-name {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--text);
+      line-height: 1.2;
+    }
+
+    .feature-desc {
+      font-size: 11px;
+      color: var(--muted);
+      margin-top: 2px;
+      line-height: 1.3;
+    }
+
+    /* Toggle switch */
+    .toggle {
+      position: relative;
+      width: 38px;
+      height: 22px;
+      flex-shrink: 0;
+    }
+
+    .toggle input {
+      opacity: 0;
+      width: 0;
+      height: 0;
+    }
+
+    .toggle-track {
+      position: absolute;
+      inset: 0;
+      border-radius: 999px;
+      background: var(--surface2);
+      border: 1px solid var(--border);
+      transition: all 0.25s;
+      cursor: pointer;
+    }
+
+    .toggle-thumb {
+      position: absolute;
+      top: 3px;
+      left: 3px;
+      width: 14px;
+      height: 14px;
+      border-radius: 50%;
+      background: var(--muted);
+      transition: all 0.25s;
+    }
+
+    .toggle input:checked+.toggle-track {
+      background: var(--accent);
+      border-color: var(--accent);
+    }
+
+    .toggle input:checked~.toggle-thumb,
+    .toggle input:checked+.toggle-track+.toggle-thumb {
+      background: #fff;
+      left: 19px;
+    }
+
+    .toggle input:checked+.toggle-track {
+      background: var(--accent);
+    }
+
+    /* Manual thumb positioning hack */
+    .toggle-wrap {
+      position: relative;
+      width: 38px;
+      height: 22px;
+      flex-shrink: 0;
+    }
+
+    .toggle-wrap input {
+      position: absolute;
+      opacity: 0;
+      width: 100%;
+      height: 100%;
+      cursor: pointer;
+      z-index: 2;
+      margin: 0;
+    }
+
+    .tw-track {
+      position: absolute;
+      inset: 0;
+      border-radius: 999px;
+      background: var(--surface2);
+      border: 1px solid var(--border);
+      transition: background 0.25s, border 0.25s;
+    }
+
+    .tw-thumb {
+      position: absolute;
+      top: 4px;
+      left: 4px;
+      width: 14px;
+      height: 14px;
+      border-radius: 50%;
+      background: var(--muted);
+      transition: left 0.25s, background 0.25s;
+    }
+
+    .toggle-wrap input:checked~.tw-track {
+      background: var(--accent);
+      border-color: var(--accent);
+    }
+
+    .toggle-wrap input:checked~.tw-thumb {
+      left: 20px;
+      background: #fff;
+    }
+
+    /* ── Adaptive Theme Banner ───────────────────── */
+    .adaptive-row {
+      margin: 8px 12px 4px;
+      background: linear-gradient(135deg, rgba(79, 156, 249, 0.1), rgba(123, 97, 255, 0.1));
+      border: 1px solid rgba(79, 156, 249, 0.3);
+      border-radius: var(--radius);
+      padding: 10px 14px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .adaptive-icon {
+      font-size: 22px;
+    }
+
+    .adaptive-info {
+      flex: 1;
+    }
+
+    .adaptive-name {
+      font-size: 13px;
+      font-weight: 700;
+      color: #a8d4ff;
+    }
+
+    .adaptive-desc {
+      font-size: 11px;
+      color: var(--muted);
+      margin-top: 2px;
+    }
+
+    /* ── Footer ─────────────────────────────────── */
+    .footer {
+      margin-top: 12px;
+      padding: 0 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .footer-brand {
+      font-size: 11px;
+      color: var(--muted);
+    }
+
+    .footer-brand strong {
+      color: var(--accent);
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="header">
+    <div class="logo">
+      <div class="logo-icon">🧠</div>
+      <div>
+        <div class="logo-title">FocusFlow</div>
+        <div class="logo-sub">Adaptive Reading Assistant</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Frustration Meter -->
+  <div class="frustration-card">
+    <div class="frust-header">
+      <div class="frust-label">😤 Frustration Level</div>
+      <div class="frust-score" id="scoreDisplay">0 <span>/ 100</span></div>
+    </div>
+    <div class="meter-track">
+      <div class="meter-fill" id="meterFill"></div>
+    </div>
+    <div class="frust-status" id="frustStatus">Calm — browsing normally</div>
+    <button class="btn-reset" id="btnReset">↺ Reset score</button>
+  </div>
+
+  <!-- Adaptive Theme -->
+  <div class="adaptive-row">
+    <div class="adaptive-icon">⚡</div>
+    <div class="adaptive-info">
+      <div class="adaptive-name">Adaptive Theme</div>
+      <div class="adaptive-desc">Auto-activates Focus Mode + Reading Focus when frustration ≥ 60</div>
+    </div>
+    <div class="toggle-wrap">
+      <input type="checkbox" id="adaptiveTheme">
+      <div class="tw-track"></div>
+      <div class="tw-thumb"></div>
+    </div>
+  </div>
+
+  <div class="section-label">Features</div>
+
+  <div class="feature-list" id="featureList">
+
+    <div class="feature-row" data-key="progressiveReveal">
+      <div class="feature-icon">🎞️</div>
+      <div class="feature-info">
+        <div class="feature-name">Progressive Reveal</div>
+        <div class="feature-desc">Blurs sections until you scroll near them</div>
+      </div>
+      <div class="toggle-wrap">
+        <input type="checkbox" data-key="progressiveReveal">
+        <div class="tw-track"></div>
+        <div class="tw-thumb"></div>
+      </div>
+    </div>
+
+    <div class="feature-row" data-key="readingFocus">
+      <div class="feature-icon">🔦</div>
+      <div class="feature-info">
+        <div class="feature-name">Reading Line Focus</div>
+        <div class="feature-desc">Highlights your current reading zone</div>
+      </div>
+      <div class="toggle-wrap">
+        <input type="checkbox" data-key="readingFocus">
+        <div class="tw-track"></div>
+        <div class="tw-thumb"></div>
+      </div>
+    </div>
+
+    <div class="feature-row" data-key="simplification">
+      <div class="feature-icon">📋</div>
+      <div class="feature-info">
+        <div class="feature-name">Auto Simplification</div>
+        <div class="feature-desc">Converts long paragraphs into bullet points</div>
+      </div>
+      <div class="toggle-wrap">
+        <input type="checkbox" data-key="simplification">
+        <div class="tw-track"></div>
+        <div class="tw-thumb"></div>
+      </div>
+    </div>
+
+    <div class="feature-row" data-key="distractionFreeze">
+      <div class="feature-icon">🥶</div>
+      <div class="feature-info">
+        <div class="feature-name">Distraction Freeze</div>
+        <div class="feature-desc">Fades non-essential links & buttons</div>
+      </div>
+      <div class="toggle-wrap">
+        <input type="checkbox" data-key="distractionFreeze">
+        <div class="tw-track"></div>
+        <div class="tw-thumb"></div>
+      </div>
+    </div>
+
+    <div class="feature-row" data-key="autoScroll">
+      <div class="feature-icon">🚀</div>
+      <div class="feature-info">
+        <div class="feature-name">Auto Scroll Assist</div>
+        <div class="feature-desc">Slowly scrolls the page for you</div>
+      </div>
+      <div class="toggle-wrap">
+        <input type="checkbox" data-key="autoScroll">
+        <div class="tw-track"></div>
+        <div class="tw-thumb"></div>
+      </div>
+    </div>
+
+    <div class="feature-row" data-key="sectionCollapse">
+      <div class="feature-icon">📂</div>
+      <div class="feature-info">
+        <div class="feature-name">Section Collapse</div>
+        <div class="feature-desc">Collapses all sections except the current</div>
+      </div>
+      <div class="toggle-wrap">
+        <input type="checkbox" data-key="sectionCollapse">
+        <div class="tw-track"></div>
+        <div class="tw-thumb"></div>
+      </div>
+    </div>
+
+    <div class="feature-row" data-key="focusMode">
+      <div class="feature-icon">🎯</div>
+      <div class="feature-info">
+        <div class="feature-name">Focus Mode</div>
+        <div class="feature-desc">Removes ads, sidebars & clutter</div>
+      </div>
+      <div class="toggle-wrap">
+        <input type="checkbox" data-key="focusMode">
+        <div class="tw-track"></div>
+        <div class="tw-thumb"></div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="footer">
+    <div class="footer-brand"><strong>FocusFlow</strong> v1.0 · All features active on this tab</div>
+  </div>
+
+  
+  <script src="popup.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,153 @@
+/* ============================================================
+   FocusFlow – Injected Page Styles
+   ============================================================ */
+
+/* ── 2. Progressive Content Reveal ─────────────────────────── */
+.ff-hidden-section {
+  filter: blur(6px) brightness(0.6);
+  opacity: 0.35;
+  pointer-events: none;
+  user-select: none;
+  transition: filter 0.7s ease, opacity 0.7s ease;
+}
+.ff-revealed-section {
+  filter: none;
+  opacity: 1;
+  pointer-events: auto;
+  transition: filter 0.7s ease, opacity 0.7s ease;
+}
+
+/* ── 3. Reading Line Focus ──────────────────────────────────── */
+.ff-reading-focus-active * {
+  transition: opacity 0.3s;
+}
+#ff-reading-bar {
+  position: absolute;
+  left: 0;
+  width: 100%;
+  height: 110px;
+  background: rgba(255, 214, 0, 0.07);
+  border-top: 2px solid rgba(255, 214, 0, 0.4);
+  border-bottom: 2px solid rgba(255, 214, 0, 0.4);
+  pointer-events: none;
+  z-index: 99997;
+  transition: top 0.08s linear;
+  mix-blend-mode: multiply;
+}
+.ff-reading-focus-active body {
+  position: relative;
+}
+
+/* ── 4. Simplification ─────────────────────────────────────── */
+.ff-simplified-list {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 8px 0;
+}
+.ff-simplified-list li {
+  padding: 6px 0 6px 20px;
+  border-left: 3px solid #4f9cf9;
+  margin-bottom: 6px;
+  font-size: 0.97em;
+  line-height: 1.5;
+  position: relative;
+}
+.ff-simplified-list li::before {
+  content: '›';
+  position: absolute;
+  left: 5px;
+  color: #4f9cf9;
+}
+.ff-toggle-original {
+  display: inline-block;
+  margin-top: 4px;
+  padding: 2px 8px;
+  font-size: 0.78em;
+  border: 1px solid #4f9cf9;
+  border-radius: 999px;
+  background: transparent;
+  color: #4f9cf9;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+.ff-toggle-original:hover {
+  background: #4f9cf9;
+  color: #fff;
+}
+
+/* ── 5. Distraction Freeze ──────────────────────────────────── */
+.ff-frozen-link {
+  opacity: 0.28 !important;
+  filter: grayscale(100%) !important;
+  cursor: not-allowed !important;
+  transition: opacity 0.3s;
+}
+.ff-distraction-freeze [class*="social"],
+.ff-distraction-freeze [class*="share"] {
+  opacity: 0.15 !important;
+}
+
+/* ── 7. Section Collapse ────────────────────────────────────── */
+.ff-collapse-btn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  width: 100%;
+  background: #f0f4ff;
+  border: 1px solid #c5d5f8;
+  border-radius: 8px;
+  padding: 10px 14px;
+  cursor: pointer;
+  font-size: 1em;
+  font-weight: 600;
+  color: #1a2a4a;
+  text-align: left;
+  margin-bottom: 6px;
+  transition: background 0.2s;
+}
+.ff-collapse-btn:hover { background: #dce9ff; }
+.ff-chevron { font-size: 0.9em; color: #4f9cf9; }
+.ff-collapse-body {
+  overflow: hidden;
+  max-height: 9000px;
+  transition: max-height 0.4s ease, opacity 0.3s ease;
+  opacity: 1;
+}
+.ff-collapse-body.ff-collapsed {
+  max-height: 0 !important;
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* ── 8. Focus Mode ──────────────────────────────────────────── */
+.ff-clutter-hidden {
+  display: none !important;
+}
+.ff-focus-mode body {
+  max-width: 780px;
+  margin: 0 auto !important;
+}
+
+/* ── Toast Notification ─────────────────────────────────────── */
+#ff-toast {
+  position: fixed;
+  bottom: 28px;
+  right: 28px;
+  background: #1a1f36;
+  color: #fff;
+  padding: 12px 20px;
+  border-radius: 12px;
+  font-family: system-ui, sans-serif;
+  font-size: 14px;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.25);
+  z-index: 2147483647;
+  opacity: 0;
+  transform: translateY(12px);
+  transition: opacity 0.3s, transform 0.3s;
+  max-width: 360px;
+  pointer-events: none;
+}
+#ff-toast.ff-toast-show {
+  opacity: 1;
+  transform: translateY(0);
+}
