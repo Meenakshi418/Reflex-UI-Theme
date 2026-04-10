@@ -14,7 +14,7 @@ What is Reflex UI-
 
 ⚙️ Installation-
    1. Clone the repository
-   2. Open Chrome → Extensions
+   2. Open Chrome → chrome://extensions
    3. Enable Developer Mode
    4. Click "Load Unpacked"
    5. Select project folder
@@ -30,13 +30,7 @@ What is Reflex UI-
    - Real-time adaptation (not after failure)
    - Works without user input
    - Lightweight browser extension
-
-How to download extension-
-  - Download ZIP
-  - Go to chrome://extensions
-  - Enable Developer Mode
-  - Click Load unpacked
-  - 
+   
 🚀 Reflex UI-
    - Detects frustration. Adapts instantly.
    - Because frustration is the real reason users leave.
@@ -53,51 +47,51 @@ User Behavior → Frustration Detection → Adaptive UI Response
 
 Reflex UI continuously observes interaction patterns and transforms the interface instantly when frustration is detected.
 
- Future scope-
- in future we will add new features like refletion mirror at the end which will give overall analysis of fustration score
- also will add a progress bar and estimated reading time
+Future scope-
+  - In future we will add new features like refletion mirror at the end which will give overall analysis of fustration score
+  -  Also will add a progress bar and estimated reading time
 
 ✨ Features (Main Highlight)-
 
 🧠 Smart Frustration Detection-
-Detects rage clicks, repeated actions, excessive scrolling
-Identifies struggle using behavior patterns
-Works silently in real-time
+   - Detects rage clicks, repeated actions, excessive scrolling
+   - Identifies struggle using behavior patterns
+   - Works silently in real-time
 
 📖 Progressive Content Reveal-
-Shows content step-by-step
-Reduces cognitive overload
-Prevents users from feeling overwhelmed
+   - Shows content step-by-step
+   - Reduces cognitive overload
+   - Prevents users from feeling overwhelmed
 
 🎯 Reading Line Focus-
-Highlights active reading area
-Dims surrounding content
-Improves reading flow and concentration
+   - Highlights active reading area
+   - Dims surrounding content
+   - Improves reading flow and concentration
 
 ✂️ Auto Content Simplification-
-Converts long paragraphs into short points
-Makes content scannable and easy to understand
-Saves user effort
+   - Converts long paragraphs into short points
+   - Makes content scannable and easy to understand
+   - Saves user effort
 
 🚫 Distraction Freeze-
-Disables unnecessary buttons and links
-Prevents random or confused clicks
-Keeps user focused
+   - Disables unnecessary buttons and links
+   - Prevents random or confused clicks
+   - Keeps user focused
 
 🔽 Auto Scroll Assist-
-Smooth automatic scrolling
-Guides users through content naturally
-Reduces manual effort
+   - Smooth automatic scrolling
+   - Guides users through content naturally
+   - Reduces manual effort
 
 📂 Section Collapse-
-Displays only the current section
-Hides irrelevant content
-Minimizes clutter
+   - Displays only the current section
+   - Hides irrelevant content
+   - Minimizes clutter
 
 🧹 Focus Mode (Clutter Removal)-
-Removes ads, popups, sidebars
-Keeps only essential content visible
-Creates distraction-free experience
+   - Removes ads, popups, sidebars
+   - Keeps only essential content visible
+   -  distraction-free experience
 
 🎨 Adaptive Theme Activation-
    - Automatically activates all features when frustration is detected
