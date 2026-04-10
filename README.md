@@ -38,21 +38,24 @@ How to download extension-
   - Click Load unpacked
   - 
 🚀 Reflex UI-
-Detects frustration. Adapts instantly.
-
-Because frustration is the real reason users leave.
+   - Detects frustration. Adapts instantly.
+   - Because frustration is the real reason users leave.
 
 🧠 Overview-
 
-Reflex UI is a browser extension that detects user frustration in real-time and dynamically adapts the interface to improve clarity, focus, and usability.
+   - Reflex UI is a browser extension that detects user frustration in real-time and dynamically adapts the interface to improve clarity, focus, and usability.
 
-Instead of forcing users to adjust to interfaces,
-Reflex UI makes interfaces adapt to users.
+   - Instead of forcing users to adjust to interfaces,
+   - Reflex UI makes interfaces adapt to users.
 
 ⚡ Core Idea-
 User Behavior → Frustration Detection → Adaptive UI Response
 
 Reflex UI continuously observes interaction patterns and transforms the interface instantly when frustration is detected.
+
+ Future scope-
+ in future we will add new features like refletion mirror at the end which will give overall analysis of fustration score
+ also will add a progress bar and estimated reading time
 
 ✨ Features (Main Highlight)-
 
