@@ -47,10 +47,6 @@ User Behavior → Frustration Detection → Adaptive UI Response
 
 Reflex UI continuously observes interaction patterns and transforms the interface instantly when frustration is detected.
 
-Future scope-
-  - In future we will add new features like refletion mirror at the end which will give overall analysis of fustration score
-  -  Also will add a progress bar and estimated reading time
-
 ✨ Features (Main Highlight)-
 
 🧠 Smart Frustration Detection-
@@ -123,6 +119,8 @@ Future scope-
 
 🤖 AI featues-
    - Automatically generate concise summaries of complex content
+   - In future we will add new features like refletion mirror at the end which will give overall analysis of fustration score
+   -  Also will add a progress bar and estimated reading time
 
 🧠 Smarter Frustration Detection-
    - Detect frustration using:
